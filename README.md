@@ -2,7 +2,7 @@
 Safepay Laravel Payment Gateway Integration
 
 
-``composer require webribs/safepay-laravel``
+``composer require rzwan/safepay-laravel``
 
 ### Publish the configuration file
   ``php artisan vendor:publish``
