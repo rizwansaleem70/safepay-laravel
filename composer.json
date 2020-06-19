@@ -1,0 +1,18 @@
+{
+    "name": "webribs/safepay-laravel",
+    "description": "Safepay payment gateway integration with Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rizwan Saleem",
+            "email": "rizwansaleem70@gmail.com",
+            "homepage": "http://webribs.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Webribs\\Safepay\\": "src/"
+        }
+    }
+}
