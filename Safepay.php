@@ -1,7 +1,7 @@
 <?php 
-namespace Rizwan\Safepay;
+namespace Webribs\Safepay;
 
-use Rizwan\Safepay\SafepayHandler;
+use Webribs\Safepay\SafepayHandler;
 
 
 class Safepay
@@ -14,7 +14,6 @@ class Safepay
 
     public function process_payment( $order_id, $total)
     {   
-
         try {
             $env = $this->get_environment();
 

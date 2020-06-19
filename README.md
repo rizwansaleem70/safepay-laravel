@@ -4,13 +4,14 @@ Safepay Laravel Payment Gateway Integration
 
 ``composer require webribs/safepay-laravel``
 
+
+### Publish the migration file.
+  ``php artisan migrate``
+  
 ### Publish the configuration file
   ``php artisan vendor:publish``
   
-### Publish the migration file.
 It will create a table named "payment_logs". 
-
-  ``php artisan migrate``
 
 A file (safepay.php) will be placed in config folder.
 
@@ -28,7 +29,7 @@ return [
 To make payment, you need to pass order_id and total amount in process_payment() 
 
 ```
-use Rizwan\Safepay\Safepay;
+use Webribs\Safepay\Safepay;
 
 
 $safepay = new Safepay;

@@ -1,5 +1,5 @@
 <?php
-namespace Rizwan\Safepay\Models;
+namespace Webribs\Safepay\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

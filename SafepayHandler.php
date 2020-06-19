@@ -1,5 +1,5 @@
 <?php 
-namespace Rizwan\Safepay;
+namespace Webribs\Safepay;
 
 class SafepayHandler {
 

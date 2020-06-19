@@ -1,8 +1,8 @@
 <?php
 
-namespace Rizwan\Safepay;
+namespace Webribs\Safepay;
 
-use Rizwan\Safepay\Safepay;
+use Webribs\Safepay\Safepay;
 use Illuminate\Support\ServiceProvider;
 
 class SafepayProvider extends ServiceProvider
