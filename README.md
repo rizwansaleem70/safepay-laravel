@@ -11,16 +11,16 @@ Add provider in app.php
 Add alias
 
 `` 'SafePay' => Webribs\Safepay\SafepayFacade::class ``
-
+  
 
 ### Publish the migration file.
   ``php artisan migrate``
-  
-### Publish the configuration file
-  ``php artisan vendor:publish``
-  
+
 It will create a table named "payment_logs". 
 
+
+### Publish the configuration file
+  ``php artisan vendor:publish``
 A file (safepay.php) will be placed in config folder.
 
 ```
