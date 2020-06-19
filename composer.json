@@ -1,5 +1,5 @@
 {
-    "name": "webribs/safepay-laravel",
+    "name": "rizwan/safepay-laravel",
     "description": "Safepay payment gateway integration with Laravel",
     "license": "MIT",
     "authors": [
