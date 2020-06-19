@@ -4,6 +4,12 @@ Safepay Laravel Payment Gateway Integration
 
 ``composer require webribs/safepay-laravel``
 
+Add this in package provider in app.php
+`` Webribs\Safepay\SafepayProvider ``
+
+Add alias
+`` 'SafePay' => Webribs\Safepay\SafepayFacade::class ``
+
 
 ### Publish the migration file.
   ``php artisan migrate``
