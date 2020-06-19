@@ -22,6 +22,7 @@ return [
     'cancel_url' => "http://localhost:8000/payment-cancel",
     'currency' => "PKR",
     'webhook_secret_key' => "",
+    'order_class' => Order::class
 ];
 ```
 To make payment, you need to pass order_id and total amount in process_payment() 
