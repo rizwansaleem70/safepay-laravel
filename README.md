@@ -71,6 +71,12 @@ Route::get('payment-success/{sig}', 'Front\HomeController@viewPaymentSuccessPage
 Route::get('payment-cancel', 'Front\HomeController@viewCancelPaymentPage');
 ```
 
+In VerifyCsrfToken.php middleware, add the following code
+```
+protected \$except = [
+  'success'
+];
+```
 
 In storePaymentLog method you need to validate the signature. If signature is validated then store the payment log and update the order status. 
 ```
