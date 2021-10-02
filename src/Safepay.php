@@ -44,7 +44,7 @@ class Safepay
         return config('safepay.environment');
     }
 
-    protected function construct_url($order_id, $tracker="", $environment)
+    protected function construct_url($order_id, $tracker, $environment)
     {
         $baseURL = $environment == "sandbox" ? self::SANDBOX_CHECKOUT_URL : self::PRODUCTION_CHECKOUT_URL;
         $params = array(
