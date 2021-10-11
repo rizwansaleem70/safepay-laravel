@@ -1,7 +1,7 @@
 <?php 
-namespace Webribs\Safepay;
+namespace Priceoye\Safepay;
 
-use Webribs\Safepay\SafepayHandler;
+use Priceoye\Safepay\SafepayHandler;
 
 
 class Safepay

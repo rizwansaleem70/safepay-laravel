@@ -2,15 +2,15 @@
 Safepay Laravel Payment Gateway Integration
 
 
-``composer require webribs/safepay-laravel``
+``composer require matiullah31/safepay-laravel``
 
 Add provider in app.php
 
-`` Webribs\Safepay\SafepayProvider ``
+`` matiullah31\Safepay\SafepayProvider ``
 
 Add alias
 
-`` 'SafePay' => Webribs\Safepay\SafepayFacade::class ``
+`` 'SafePay' => matiullah31\Safepay\SafepayFacade::class ``
   
 
 ### Publish the migration file.
@@ -37,7 +37,7 @@ return [
 To make payment, you need to pass order_id and total amount in process_payment() 
 
 ```
-use Webribs\Safepay\Safepay;
+use matiullah31\Safepay\Safepay;
 
 
 $safepay = new Safepay;

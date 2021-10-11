@@ -1,8 +1,8 @@
 <?php
 
-namespace Webribs\Safepay;
+namespace Priceoye\Safepay;
 
-use Webribs\Safepay\Safepay;
+use Priceoye\Safepay\Safepay;
 use Illuminate\Support\ServiceProvider;
 
 class SafepayProvider extends ServiceProvider

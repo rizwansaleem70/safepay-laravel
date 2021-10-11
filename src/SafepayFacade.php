@@ -1,5 +1,5 @@
 <?php 
-namespace Webribs\Safepay;
+namespace Priceoye\Safepay;
 
 use Illuminate\Support\Facades\Facade;
 

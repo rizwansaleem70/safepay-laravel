@@ -1,5 +1,5 @@
 <?php 
-namespace Webribs\Safepay;
+namespace Priceoye\Safepay;
 
 class SafepayHandler {
 
