@@ -6,11 +6,11 @@ Safepay Laravel Payment Gateway Integration
 
 Add provider in app.php
 
-`` matiullah31\Safepay\SafepayProvider ``
+`` Priceoye\Safepay\SafepayProvider ``
 
 Add alias
 
-`` 'SafePay' => matiullah31\Safepay\SafepayFacade::class ``
+`` 'SafePay' => Priceoye\Safepay\SafepayFacade::class ``
   
 
 ### Publish the migration file.
@@ -37,7 +37,7 @@ return [
 To make payment, you need to pass order_id and total amount in process_payment() 
 
 ```
-use matiullah31\Safepay\Safepay;
+use Priceoye\Safepay\Safepay;
 
 
 $safepay = new Safepay;
