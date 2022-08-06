@@ -1,8 +1,8 @@
 <?php
 
-namespace Webribs\Safepay;
+namespace Priceoye\Safepay;
 
-use Webribs\Safepay\Safepay;
+use Priceoye\Safepay\Safepay;
 use Illuminate\Support\ServiceProvider;
 
 class SafepayProvider extends ServiceProvider
@@ -14,7 +14,6 @@ class SafepayProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__."/migrations");
 
         $this->publishes([
             __DIR__."/config/safepay.php" => config_path("safepay.php")

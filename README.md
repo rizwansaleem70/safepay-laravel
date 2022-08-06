@@ -2,21 +2,16 @@
 Safepay Laravel Payment Gateway Integration
 
 
-``composer require webribs/safepay-laravel``
+``composer require matiullah31/safepay-laravel``
 
 Add provider in app.php
 
-`` Webribs\Safepay\SafepayProvider ``
+`` Priceoye\Safepay\SafepayProvider ``
 
 Add alias
 
-`` 'SafePay' => Webribs\Safepay\SafepayFacade::class ``
+`` 'SafePay' => Priceoye\Safepay\SafepayFacade::class ``
   
-
-### Publish the migration file.
-  ``php artisan migrate``
-
-It will create a table named "payment_logs". 
 
 
 ### Publish the configuration file
@@ -24,20 +19,22 @@ It will create a table named "payment_logs".
 A file (safepay.php) will be placed in config folder.
 
 ```
+
 return [
-    "environment"  => "sandbox", //use 'production' for live payments
-    "api_key" => "",
-    'redirect_url' => "http://localhost:8000/success",
-    'cancel_url' => "http://localhost:8000/payment-cancel",
+    "environment"  => env("SAFEPAY_ENV",'sandbox'), //use 'production' for live payments
+    "api_key" => env("SAFEPAY_API_KEY",''),
+    'redirect_url' => env("SAFEPAY_SUCCESS_URL",''),
+    'cancel_url' => env("SAFEPAY_CANCEL_URL",''),
     'currency' => "PKR",
-    'webhook_secret_key' => "",
-    'order_class' => Order::class
+    'webhook_secret_key' => env("SAFEPAY_SECRET",'')
+    'webhook_shared_secret_key' => env("SAFEPAY_SHARED_SECRET",''),
 ];
+
 ```
 To make payment, you need to pass order_id and total amount in process_payment() 
 
 ```
-use Webribs\Safepay\Safepay;
+use Priceoye\Safepay\Safepay;
 
 
 $safepay = new Safepay;
@@ -66,45 +63,65 @@ array (
 ### Now create a route in web.php file
 
 ```
-Route::post('success', 'Front\HomeController@storePaymentLog');
-Route::get('payment-success/{sig}', 'Front\HomeController@viewPaymentSuccessPage')->name('payment_success');
-Route::get('payment-cancel', 'Front\HomeController@viewCancelPaymentPage');
+Route::post('payment-success', 'SafepayController@paymentCompleted');
+Route::get('order-completed/{sig}', 'OrderController@orderCompleted')->name('orderCompleted');
+Route::get('payment-cancel', 'OrderController@orderCancelled');
 ```
 
 In VerifyCsrfToken.php middleware, add the following code
 ```
 protected \$except = [
-  'success'
+  'payment-success'
 ];
 ```
 
-In storePaymentLog method you need to validate the signature. If signature is validated then store the payment log and update the order status. 
+On payment-success route and paymentCompleted function. 
 ```
-public function storePaymentLog(Request $request)
+public function paymentCompleted(Request $request)
 {
     $data = $request->input();
     $safepay = new Safepay;
 
     if ($safepay->validate_signature($data['tracker'], $data['sig']) === false) {
+
         return redirect()->route('checkout.index')->with(['error' => 'Payment Failed']);
     }
 
-    PaymentLog::create([
-        'order_id' => $data['order_id'],
-        'reference_code' => $data['reference'],
-        'tracker' => $data['tracker'],
-        'signature' => $data['sig'],
-    ]);
-
-    //update order status
-    $order = Order::find($data['order_id']);
-    $order->order_status_id = 1; //Paid
-    $order->save();
-
-    event(new OrderCreateEvent($order));
-
-    Cart::destroy();
-
-    return redirect()->route('payment_success', $data['sig']);
+    return redirect(url('order-completed/'.$data['sig']));
+    
 }
 
+```
+
+### Now to add Webhook and verify it add route in api.php file
+
+```
+
+Route::post('api/safepayNotification', 'SafepayApiController@safepayNotification');
+
+```
+
+Now to verify the web hook request
+
+```
+
+public function safepayNotification(Request $request)
+{
+    $data = $request->all();
+
+    $safepay = new Safepay;
+
+    $x_sfpy_signature = $request->header('x-sfpy-signature');
+
+    if ($safepay->verifyWebhook($data, $x_sfpy_signature) === false) {
+
+        //Web Hook verification failed
+       
+    }
+
+   
+    
+}
+
+
+```

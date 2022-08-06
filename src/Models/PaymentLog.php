@@ -1,5 +1,5 @@
 <?php
-namespace Webribs\Safepay\Models;
+namespace Priceoye\Safepay\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
