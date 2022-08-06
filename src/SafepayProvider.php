@@ -14,7 +14,6 @@ class SafepayProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__."/migrations");
 
         $this->publishes([
             __DIR__."/config/safepay.php" => config_path("safepay.php")

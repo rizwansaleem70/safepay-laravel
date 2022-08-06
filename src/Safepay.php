@@ -76,4 +76,30 @@ class Safepay
 
         return false;
     }
+
+
+    /**
+     * Verify Webhook request
+     */
+
+    public function verifyWebhook($request_data, $x_sfpy_signature)
+    {
+
+       
+        if (empty($x_sfpy_signature)) {
+            throw new \Exception("Missing signature.", 1);
+        }
+
+        if ( !isset( $request_data['data'] ) ) {
+            throw new \Exception("illegal request data.", 1);
+        }
+
+        $req_data = $request_data['data'];
+
+        $data = json_encode($req_data,JSON_UNESCAPED_SLASHES);
+
+        return hash_hmac('sha512',$data, config('safepay.webhook_shared_secret_key')) === $x_sfpy_signature;
+    }
+
+
 }
